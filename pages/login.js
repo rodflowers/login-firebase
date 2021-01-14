@@ -1,61 +1,47 @@
-import React, { Component } from "react";
 import firabase from "../firebase";
 import { useState } from "react";
 import { useRouter } from "next/router";
+import LoginRegisterForm from "../components/LoginRegisterForm";
 
-class Login extends Component {
-  state = {
-    email: "",
-    password: "",
+const Login = () => {
+  const [loginEmail, setLoginEmail] = useState("");
+  const [loginPassword, setLoginPassword] = useState("");
+  const [registerEmail, setRegisterEmail] = useState("");
+  const [registerPassword, setRegisterPassword] = useState("");
+  const router = useRouter();
+
+  const register = () => {
+    console.log(registerEmail);
+    console.log(registerPassword);
   };
-  handleChange = (evt) => {
-    this.setState({
-      [evt.target.name]: evt.target.value,
-    });
+
+  const login = () => {
+    console.log(loginEmail);
+    console.log(loginPassword);
   };
-  handleSubmit = (evt) => {
-    evt.preventDefault();
-    console.log("Clicked");
-  };
-  render() {
-    return (
-      <div className="container">
-        <form onSubmit={this.handleSubmit}>
-          <h2 className="text-center pt-4">Login Page</h2>
-          <div className="col-md-6">
-            <div className="formGroup">
-              <label>email</label>
-              <input
-                type="email"
-                onChange={this.handleChange}
-                value={this.state.email}
-                name="email"
-                id="email"
-                className="form-control"
-              />
-              <small>{this.state.email}</small>
-            </div>
-            <div className="formGroup">
-              <label>password</label>
-              <input
-                type="password"
-                onChange={this.handleChange}
-                value={this.state.password}
-                name="password"
-                id="password"
-                className="form-control"
-              />
-              <small>{this.state.password}</small>
-            </div>
-            <div>
-              <button className="btn btn-primary" style={{ margin: 5 }}>
-                Regitrarse
-              </button>
-            </div>
-          </div>
-        </form>
+  return (
+    <div className="container">
+      <h2 className="text-center pt-4 display-4">Login/Register</h2>
+      <div className="row">
+        <LoginRegisterForm
+          email={loginEmail}
+          setEmail={setLoginEmail}
+          pass={loginPassword}
+          setPass={setLoginPassword}
+          buttonName="Login"
+          handleSubmit={login}
+        />
+        <LoginRegisterForm
+          email={registerEmail}
+          setEmail={setRegisterEmail}
+          pass={registerPassword}
+          setPass={setRegisterPassword}
+          buttonName="Register"
+          handleSubmit={register}
+        />
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
+
 export default Login;
