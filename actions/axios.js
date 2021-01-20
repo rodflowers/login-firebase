@@ -8,7 +8,7 @@ export const axiosPublic = axios.create({
 });
 
 export const axiosAuth = axios.create({
-  baseURL: "http://localhost:8000/api/v1",
+  baseURL: "http://localhost:8000/api/v1/",
 });
 
 axiosAuth.interceptors.request.use(
